@@ -1,8 +1,13 @@
 const path = require('path');
-const { Sequelize } = require('sequelize');
+const { Sequelize, DataTypes, Model } = require('sequelize');
 
-// TODO - connect to db via sequelize
+let sequelize = new Sequelize({
+    dialect: "sqlite",
+    storage: "./db.sqlite"
+});
 
 module.exports = {
-    sequelize
+    sequelize,
+    DataTypes,
+    Model
 };

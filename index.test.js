@@ -17,27 +17,34 @@ describe('Restaurant and Menu Models', () => {
     });
 
     test('can create a Restaurant', async () => {
-        // TODO - write test
-        expect('NO TEST').toEqual('EXPECTED DATA')
+        const testRest = await Restaurant.create({
+            name: "Goobies Pasta",
+            location: "ABC Glorbon Drive",
+            cuisine: "Pasta"
+        });
+        expect(testRest.name).toEqual('Goobies Pasta');
     });
 
     test('can create a Menu', async () => {
-        // TODO - write test
-        expect('NO TEST').toEqual('EXPECTED DATA')
+        const testMenu = await Menu.create({
+            title: "Gloop"
+        });
+        expect(testMenu.title).toEqual('Gloop');
     });
 
     test('can find Restaurants', async () => {
-        // TODO - write test
-        expect('NO TEST').toEqual('EXPECTED DATA')
+        const foundRest = await Restaurant.findByPk(1);
+        expect(foundRest.name).toEqual('Goobies Pasta');
     });
 
     test('can find Menus', async () => {
-        // TODO - write test
-        expect('NO TEST').toEqual('EXPECTED DATA')
+        const foundMenu = await Menu.findByPk(1);
+        expect(foundMenu.title).toEqual('Gloop');
     });
 
     test('can delete Restaurants', async () => {
-        // TODO - write test
-        expect('NO TEST').toEqual('EXPECTED DATA')
+        let gary = await Restaurant.findByPk(1);
+        const deletedRest = await gary.destroy();
+        expect(deletedRest.name).toEqual('Goobies Pasta');
     });
 })

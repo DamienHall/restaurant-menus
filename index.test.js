@@ -47,4 +47,20 @@ describe('Restaurant and Menu Models', () => {
         const deletedRest = await gary.destroy();
         expect(deletedRest.name).toEqual('Goobies Pasta');
     });
-})
+
+    test("Can eager load", async ()=> {
+        const restaurant = await Restaurant.create({ name: "Olive Garden", location: "Texas", cuisine: "pasta" })
+        const menus = [
+            await Menu.create({ title: "Test 1" }),
+            await Menu.create({ title: "Test 2" })
+        ];
+        await restaurant.addMenu(menus[0]); 
+        await restaurant.addMenu(menus[1]); 
+        const eagerLoadedMenuList = await Restaurant.findAll({
+            include: [
+                { model: Menu }
+            ]
+        });
+        expect(await eagerLoadedMenuList[0]["Menus"][0].title).toBe(menus[0].title);
+    });
+});

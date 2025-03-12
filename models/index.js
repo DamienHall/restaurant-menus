@@ -1,4 +1,10 @@
-const {Restaurant} = require('./Restaurant')
-const {Menu} = require('./Menu')
+const {Restaurant} = require('./Restaurant');
+const {Menu} = require('./Menu');
+const {Item} = require('./Item');
 
-module.exports = { Restaurant, Menu }
+Restaurant.hasMany(Menu);
+Menu.hasOne(Restaurant);
+Menu.hasMany(Item);
+Item.hasMany(Menu);
+
+module.exports = { Restaurant, Menu, Item };
